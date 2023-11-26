@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { PropsWithChildren } from "react";
-import "./style.css";
+
+import "./global.css";
 
 export const metadata: Metadata = {
   title: "OUTTA",
