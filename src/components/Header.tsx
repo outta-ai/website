@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Logo } from "./Logo";
 
 const HeaderLinks = [
@@ -28,8 +30,12 @@ export function Header() {
           </li>
         ))}
       </ul>
-      <div className="hidden lg:block w-60" />
-      <div className="block lg:hidden w-16 h-16"></div>
+      <div className="hidden lg:block w-60">
+        {/* TODO: Add translation selection here */}
+      </div>
+      <div className="flex lg:hidden w-16 h-16 justify-center items-center">
+        <FontAwesomeIcon icon={faBars} className="w-6 h-6" />
+      </div>
     </header>
   );
 }

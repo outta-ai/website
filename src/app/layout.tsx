@@ -13,10 +13,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body>{children}</body>
-      <main className="font-pretendard relative w-full">
-        <Header />
-      </main>
+      <body>
+        <main className="font-pretendard relative w-full">
+          <Header />
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
