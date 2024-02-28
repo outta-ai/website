@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/app/**/*.{ts,tsx,mdx}"],
+  content: ["./src/**/*.{ts,tsx,mdx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -38,6 +38,22 @@ const config: Config = {
           "Segoe UI Symbol",
           "sans-serif",
         ],
+        hanamdaum: [
+          "HANAMDAUM",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "system-ui",
+          "Roboto",
+          "Helvetica Neue",
+          "Segoe UI",
+          "Apple SD Gothic Neo",
+          "Noto Sans KR",
+          "Malgun Gothic",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "sans-serif",
+        ]
       },
     },
   },
