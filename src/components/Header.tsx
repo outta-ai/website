@@ -22,7 +22,7 @@ const HeaderLinks = [
 export function Header() {
   return (
     <header className="w-full max-w-[896px] lg:max-w-none h-16 mt-12 mx-auto lg:px-16 flex overflow-hidden items-center">
-      <Logo />
+      <Logo className="ml-[min(48px,5%)]" />
       <ul className="hidden lg:flex flex-1 justify-center items-center">
         {HeaderLinks.map((link) => (
           <li key={link.name} className="w-32 font-hanamdaum text-center">
@@ -33,7 +33,7 @@ export function Header() {
       <div className="hidden lg:block w-60">
         {/* TODO: Add translation selection here */}
       </div>
-      <div className="flex lg:hidden w-16 h-16 justify-center items-center">
+      <div className="flex lg:hidden w-16 h-16 justify-center items-center mr-[min(48px,5%)]">
         <FontAwesomeIcon icon={faBars} className="w-6 h-6" />
       </div>
     </header>

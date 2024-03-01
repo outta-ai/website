@@ -1,7 +1,11 @@
-import { Rufina } from "next/font/google";
-
-const fontRufina = Rufina({ weight: "400", subsets: ["latin", "latin-ext"] });
+import { AboutSection } from "./(sections)/AboutSection";
+import { MainSection } from "./(sections)/MainSection";
 
 export default function HomePage() {
-  return <div className="absolute -z-50 top-0 left-0"></div>;
+  return (
+    <>
+      <MainSection />
+      <AboutSection />
+    </>
+  );
 }
