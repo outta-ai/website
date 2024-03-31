@@ -31,7 +31,7 @@ export function Header() {
         ))}
       </ul>
       <div className="hidden lg:block w-60">
-        {/* TODO: Add translation selection here */}
+        <Link href="/auth/login">로그인</Link>
       </div>
       <div className="flex lg:hidden w-16 h-16 justify-center items-center mr-[min(48px,5%)]">
         <FontAwesomeIcon icon={faBars} className="w-6 h-6" />

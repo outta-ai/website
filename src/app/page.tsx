@@ -1,4 +1,5 @@
 import { AboutSection } from "./(sections)/AboutSection";
+import { CoreValueSeciton } from "./(sections)/CoreValueSection";
 import { MainSection } from "./(sections)/MainSection";
 
 export default function HomePage() {
@@ -6,6 +7,7 @@ export default function HomePage() {
     <>
       <MainSection />
       <AboutSection />
+      <CoreValueSeciton />
     </>
   );
 }
