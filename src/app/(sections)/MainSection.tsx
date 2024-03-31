@@ -4,7 +4,7 @@ import Image from "next/image";
 import classNames from "classnames";
 
 import IconMouse from "@/assets/icons/icon_mouse.svg";
-import imageBlueAbstract from "@/assets/images/blue_abstract.png";
+import imageBlueAbstract from "@/assets/images/image_cover.png";
 
 const fontRufina = Rufina({ weight: "400", subsets: ["latin", "latin-ext"] });
 const fontMonsterrat = Montserrat({ weight: "400", subsets: ["latin"] });

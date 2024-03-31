@@ -19,7 +19,7 @@ const HeaderLinks = [
   },
 ];
 
-export function Header() {
+export async function Header() {
   return (
     <header className="w-full max-w-[896px] lg:max-w-none h-16 mt-12 mx-auto lg:px-16 flex overflow-hidden items-center">
       <Logo className="ml-[min(48px,5%)]" />

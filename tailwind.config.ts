@@ -6,6 +6,16 @@ const config: Config = {
 		extend: {
 			colors: {
 				black: "#1f2025",
+				identity: {
+					100: "#dae0fe",
+					200: "#b5c1fe",
+					300: "#7386f9",
+					400: "#465df6",
+					500: "#3345d3",
+					600: "#2331b1",
+					700: "#16218e",
+					800: "#0d1576",
+				},
 			},
 			fontFamily: {
 				pretendard: [
