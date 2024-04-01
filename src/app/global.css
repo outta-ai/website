@@ -5,9 +5,41 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 
 @font-face {
-  font-family: "SBAggroB";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
-    format("woff");
-  font-weight: normal;
+  font-family: "SBAggro";
+  src: url("/fonts/SBAggro300.woff2") format("woff2");
+  font-weight: 300;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "SBAggro";
+  src: url("/fonts/SBAggro500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SBAggro";
+  src: url("/fonts/SBAggro700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HANAMDAUM";
+  src: url("/fonts/hanamdaum.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HANAMDAUM";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+html {
+  @apply break-keep;
 }
