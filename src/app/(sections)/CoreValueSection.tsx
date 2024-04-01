@@ -11,7 +11,7 @@ export function CoreValueSeciton({ values }: Props) {
   }
 
   return (
-    <section className="w-full lg:h-[75vh] bg-black">
+    <section id="core-value" className="w-full lg:h-[75vh] bg-black">
       <div className="h-full py-16 sm:py-32 px-3 lg:px-48">
         <h2 className="text-white text-3xl font-sbaggro mb-12">Core Value</h2>
         <div

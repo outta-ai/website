@@ -16,7 +16,7 @@ export function MemberList({ members, className, memberClassName }: Props) {
   return (
     <div
       className={classNames(
-        "w-full grid mx-auto align-items-center",
+        "hidden w-full lg:grid mx-auto align-items-center",
         className
       )}
       style={{

@@ -68,7 +68,7 @@ export function HistorySecion({ contents }: Props) {
   }
 
   return (
-    <section className="w-full min-h-screen py-12 px-3 lg:px-48">
+    <section id="history" className="w-full min-h-screen py-12 px-3 lg:px-48">
       <h2 className="text-4xl font-sbaggro my-16">History</h2>
       {[...historyMap.keys()].sort().map((year) => (
         <YearList key={`history-${year}`} contents={historyMap.get(year)} />

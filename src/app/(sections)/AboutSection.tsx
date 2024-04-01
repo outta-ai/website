@@ -7,7 +7,7 @@ type Props = {
 
 export function AboutSection({ summary, description }: Props) {
   return (
-    <section className="w-full h-screen relative overflow-auto">
+    <section id="about-us" className="w-full h-screen relative overflow-auto">
       <div className="h-full py-16 sm:py-32 px-3 lg:px-48 flex flex-col">
         <h2 className="font-sbaggro font-light uppercase text-sm">
           &lt;About us&gt;
