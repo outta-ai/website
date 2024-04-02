@@ -20,6 +20,8 @@ export default async function HomePage() {
   const dataRaw = await request.json();
   const data = dataRaw as WebsiteMain;
 
+  console.log(data);
+
   return (
     <>
       <MainSection />
