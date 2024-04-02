@@ -13,7 +13,6 @@ export default async function HomePage() {
   const request = await fetch(
     `${process.env.NEXT_PUBLIC_PAYLOAD_CMS_URL}/api/globals/website-main`,
     {
-      cache: "force-cache",
       next: {
         revalidate: 10 * 60,
       },
