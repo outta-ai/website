@@ -58,7 +58,7 @@ export async function Member({ member, className }: Props) {
       <p className="my-6 text-xl font-bold text-center">
         {member.position} | {name}
       </p>
-      <ul className="w-full list-disc list-inside">
+      <ul className="w-full list-disc list-outside">
         {description.map((desc, i) => (
           <li key={`${name}-${desc.description}`} className="text-gray-500">
             {desc.description}
