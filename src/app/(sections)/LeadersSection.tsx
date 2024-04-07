@@ -13,9 +13,13 @@ export function LeadersSection({ boardMembers, executiveMembers }: Props) {
       <MemberList
         members={boardMembers}
         className="mx-auto justify-items-center"
-        memberClassName="max-w-60"
+        memberClassName="max-w-64"
       />
-      <MemberList members={executiveMembers} className="mt-24" />
+      <MemberList
+        members={executiveMembers}
+        className="mt-24"
+        memberClassName="max-w-64"
+      />
     </section>
   );
 }
