@@ -27,7 +27,7 @@ export async function Member({ member, className }: Props) {
     }
 
     if (typeof member.member.profile !== "string") {
-      return `${process.env.NEXT_PUBLIC_PAYLOAD_CMS_URL}${member.member.profile.url}`;
+      return member.member.profile.url;
     }
 
     const response = await fetch(
@@ -37,7 +37,7 @@ export async function Member({ member, className }: Props) {
     const dataRaw = await response.json();
     const data = dataRaw as Media;
 
-    return `${process.env.NEXT_PUBLIC_PAYLOAD_CMS_URL}${data.url}`;
+    return data.url;
   })();
 
   const description = member.description || [];
@@ -53,7 +53,7 @@ export async function Member({ member, className }: Props) {
           className="w-full max-w-[150px] aspect-square rounded-full mx-auto"
         />
       ) : (
-        <div className="w-full aspect-square bg-gray-400 rounded-full" />
+        <div className="w-full aspect-square max-w-[150px] bg-gray-200 rounded-full mx-auto" />
       )}
       <p className="my-6 text-xl font-bold text-center">
         {member.position} | {name}
