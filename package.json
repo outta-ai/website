@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "bash amplify.sh && next build",
+    "build": "./amplify.sh && next build",
     "start": "next start",
     "lint": "next lint"
   },
