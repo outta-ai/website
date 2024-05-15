@@ -14,7 +14,7 @@ export async function Footer() {
 	const data = dataRaw as Info;
 
 	return (
-		<div className="w-full h-[30vh] flex flex-col sm:flex-row font-pretendard bg-black text-white/75 p-6 sm:p-16">
+		<div className="w-full flex flex-col sm:flex-row font-pretendard bg-black text-white/75 p-6 sm:p-16">
 			<div className="flex-1">
 				<ul className="last:border-none">
 					{data.bottom?.map((item) => (
