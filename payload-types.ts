@@ -18,6 +18,7 @@ export interface Config {
 		"website-main": WebsiteMain;
 		"website-lab": WebsiteLab;
 		"website-playground": WebsitePlayground;
+		info: Info;
 	};
 }
 /**
@@ -44,6 +45,7 @@ export interface Member {
 export interface Media {
 	id: string;
 	alt?: string | null;
+	object?: string | null;
 	updatedAt: string;
 	createdAt: string;
 	url?: string | null;
@@ -180,7 +182,53 @@ export interface WebsiteMain {
  */
 export interface WebsiteLab {
 	id: string;
-	index?: {};
+	index: {
+		characteristics?:
+			| {
+					title: string;
+					description: {
+						[k: string]: unknown;
+					}[];
+					id?: string | null;
+			  }[]
+			| null;
+		curriculums?:
+			| {
+					icon: string | Media;
+					name: string;
+					description: string;
+					courses?:
+						| {
+								name: string;
+								description: string;
+								id?: string | null;
+						  }[]
+						| null;
+					id?: string | null;
+			  }[]
+			| null;
+		reviews?:
+			| {
+					name: string;
+					description: {
+						[k: string]: unknown;
+					}[];
+					id?: string | null;
+			  }[]
+			| null;
+		recommend?:
+			| {
+					description: {
+						[k: string]: unknown;
+					}[];
+					id?: string | null;
+			  }[]
+			| null;
+		registration: {
+			due_date: string;
+			link: string;
+		};
+	};
 	updatedAt?: string | null;
 	createdAt?: string | null;
 }
@@ -191,6 +239,43 @@ export interface WebsiteLab {
 export interface WebsitePlayground {
 	id: string;
 	index?: {};
+	updatedAt?: string | null;
+	createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "info".
+ */
+export interface Info {
+	id: string;
+	name: string;
+	address: string;
+	registrationNumber?: string | null;
+	email: string;
+	manager: string | Member;
+	terms?: string | null;
+	privacy?: string | null;
+	bottom?:
+		| {
+				name: string;
+				url: string;
+				id?: string | null;
+		  }[]
+		| null;
+	social?:
+		| {
+				name: string;
+				url: string;
+				id?: string | null;
+		  }[]
+		| null;
+	external?:
+		| {
+				name: string;
+				url: string;
+				id?: string | null;
+		  }[]
+		| null;
 	updatedAt?: string | null;
 	createdAt?: string | null;
 }

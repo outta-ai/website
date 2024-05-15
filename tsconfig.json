@@ -23,9 +23,8 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": [  "./src/*"],
+      "@payload/types": [ "./payload-types.ts"],
     },
     "forceConsistentCasingInFileNames": true,
     "downlevelIteration": true
