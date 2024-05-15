@@ -44,7 +44,7 @@ export async function Footer() {
 					))}
 				</div>
 			</div>
-			<div className="w-64">
+			<div className="w-64 mt-12 sm:mt-0">
 				<p className="text-lg mb-3 font-bold">관련 사이트</p>
 				{data.external?.map((item) => (
 					<a
