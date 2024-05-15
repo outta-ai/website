@@ -1,19 +1,22 @@
-import type { WebsiteMain } from "@payload/types";
 import type { StyledText } from "@/components/RichText";
+import type { WebsiteMain } from "@payload/types";
 
-import { AboutSection } from "./(sections)/AboutSection";
-import { CoreValueSeciton } from "./(sections)/CoreValueSection";
-import { HistorySecion } from "./(sections)/HistorySection";
-import { HowSection } from "./(sections)/HowSection";
-import { LeadersSection } from "./(sections)/LeadersSection";
-import { MainSection } from "./(sections)/MainSection";
-import { SummarySection } from "./(sections)/SummarySection";
+import { AboutSection } from "./_sections/AboutSection";
+import { CoreValueSeciton } from "./_sections/CoreValueSection";
+import { HistorySecion } from "./_sections/HistorySection";
+import { HowSection } from "./_sections/HowSection";
+import { LeadersSection } from "./_sections/LeadersSection";
+import { MainSection } from "./_sections/MainSection";
+import { SummarySection } from "./_sections/SummarySection";
 
 export default async function HomePage() {
 	const request = await fetch(
 		`${process.env.NEXT_PUBLIC_PAYLOAD_CMS_URL}/api/globals/website-main`,
 		{
-			cache: "no-store",
+			next: {
+				revalidate: 5 * 60,
+				tags: ["payload"],
+			},
 		},
 	);
 

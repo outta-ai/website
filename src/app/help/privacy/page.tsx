@@ -4,7 +4,10 @@ export default async function PrivacyPage() {
 	const request = await fetch(
 		`${process.env.NEXT_PUBLIC_PAYLOAD_CMS_URL}/api/globals/info`,
 		{
-			cache: "default",
+			next: {
+				revalidate: 5 * 60,
+				tags: ["payload"],
+			},
 		},
 	);
 
