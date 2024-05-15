@@ -1,4 +1,4 @@
-import { WebsiteMain } from "@/../payload-types";
+import { WebsiteMain } from "@payload/types";
 
 type NonNull<T> = T extends null ? never : T extends undefined ? never : T;
 
