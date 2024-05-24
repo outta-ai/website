@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "$PAYLOAD_CMS_URL" >> .env
-echo "$NEXT_PUBLIC_IMAGE_S3_URL" >> .env
+echo "PAYLOAD_CMS_URL=$PAYLOAD_CMS_URL" >> .env
+echo "NEXT_PUBLIC_IMAGE_S3_URL=$NEXT_PUBLIC_IMAGE_S3_URL" >> .env
 
-echo "$NEXT_PUBLIC_CHANNEL_KEY" >> .env
+echo "NEXT_PUBLIC_CHANNEL_KEY=$NEXT_PUBLIC_CHANNEL_KEY" >> .env
 
-echo "$REFRESH_KEY" >> .env
+echo "REFRESH_KEY=$REFRESH_KEY" >> .env

@@ -11,6 +11,8 @@ export interface Config {
 		members: Member;
 		admins: Admin;
 		media: Media;
+		attachments: Attachment;
+		"lab-posts": LabPost;
 		"payload-preferences": PayloadPreference;
 		"payload-migrations": PayloadMigration;
 	};
@@ -19,6 +21,7 @@ export interface Config {
 		"website-lab": WebsiteLab;
 		"website-playground": WebsitePlayground;
 		info: Info;
+		links: Link;
 	};
 }
 /**
@@ -28,6 +31,7 @@ export interface Config {
 export interface Member {
 	id: string;
 	name: string;
+	email?: string | null;
 	works?:
 		| {
 				description?: string | null;
@@ -72,6 +76,43 @@ export interface Admin {
 	loginAttempts?: number | null;
 	lockUntil?: string | null;
 	password: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "attachments".
+ */
+export interface Attachment {
+	id: string;
+	name?: string | null;
+	object?: string | null;
+	updatedAt: string;
+	createdAt: string;
+	url?: string | null;
+	filename?: string | null;
+	mimeType?: string | null;
+	filesize?: number | null;
+	width?: number | null;
+	height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lab-posts".
+ */
+export interface LabPost {
+	id: string;
+	title: string;
+	category: string;
+	content: {
+		[k: string]: unknown;
+	}[];
+	attachements?:
+		| {
+				file: string | Attachment;
+				id?: string | null;
+		  }[]
+		| null;
+	updatedAt: string;
+	createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -230,6 +271,42 @@ export interface WebsiteLab {
 			link: string;
 		};
 	};
+	materials?:
+		| {
+				title: string;
+				description: {
+					[k: string]: unknown;
+				}[];
+				year: number;
+				publisher: string;
+				price: number;
+				link?: string | null;
+				image: string | Media;
+				id?: string | null;
+		  }[]
+		| null;
+	generations?:
+		| {
+				index: number;
+				start: string;
+				end?: string | null;
+				id?: string | null;
+		  }[]
+		| null;
+	members?:
+		| {
+				role: string;
+				generation: number;
+				member?: (string | null) | Member;
+				works?:
+					| {
+							description: string;
+							id?: string | null;
+					  }[]
+					| null;
+				id?: string | null;
+		  }[]
+		| null;
 	updatedAt?: string | null;
 	createdAt?: string | null;
 }
@@ -274,6 +351,29 @@ export interface Info {
 		| {
 				name: string;
 				url: string;
+				id?: string | null;
+		  }[]
+		| null;
+	updatedAt?: string | null;
+	createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "links".
+ */
+export interface Link {
+	id: string;
+	sites?:
+		| {
+				title: string;
+				path: string;
+				links?:
+					| {
+							title: string;
+							url: string;
+							id?: string | null;
+					  }[]
+					| null;
 				id?: string | null;
 		  }[]
 		| null;
