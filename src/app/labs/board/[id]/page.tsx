@@ -1,7 +1,7 @@
 import { RichText, StyledText } from "@/components/RichText";
 import { LabPost } from "@payload/types";
 import classNames from "classnames";
-import { categories } from "../page";
+import { categories } from "../constants";
 
 type Props = {
 	params: {

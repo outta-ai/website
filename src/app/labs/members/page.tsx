@@ -49,8 +49,8 @@ export default async function LabsMembersPage({ searchParams }: Props) {
 	);
 
 	return (
-		<div className="w-full h-full max-w-[1024px] mx-auto lg:px-16 flex">
-			<ul className="w-64 h-full">
+		<div className="w-full h-full max-w-[1024px] mx-auto lg:px-16 flex flex-col sm:flex-row">
+			<ul className="w-64 h-full px-3">
 				{data.generations
 					?.sort((a, b) => b.index - a.index)
 					.map((gen) => (
@@ -89,7 +89,7 @@ export default async function LabsMembersPage({ searchParams }: Props) {
 						</li>
 					))}
 			</ul>
-			<div className="flex-1 h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+			<div className="flex-1 h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 px-3 mb-12">
 				{members?.map((member) => (
 					<MemberCard member={member} key={member.id} />
 				))}
