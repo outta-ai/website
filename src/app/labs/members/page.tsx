@@ -12,11 +12,10 @@ export default async function LabsMembersPage({ searchParams }: Props) {
 	const request = await fetch(
 		`${process.env.PAYLOAD_CMS_URL}/api/globals/website-lab`,
 		{
-			// next: {
-			// 	revalidate: 5 * 60,
-			// 	tags: ["payload"],
-			// },
-			cache: "no-cache",
+			next: {
+				revalidate: 5 * 60,
+				tags: ["payload"],
+			},
 		},
 	);
 
