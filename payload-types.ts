@@ -218,6 +218,7 @@ export interface WebsiteLab {
 			| null;
 		recommend?:
 			| {
+					image?: string | Media | null;
 					description: {
 						[k: string]: unknown;
 					}[];

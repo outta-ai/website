@@ -1,10 +1,6 @@
-"use client";
-
-import { Media } from "@payload/types";
 import type { Member as MemberType } from "@/types/Member";
 import classNames from "classnames";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 type Props = {
 	member: MemberType;
@@ -12,7 +8,21 @@ type Props = {
 };
 
 export function Member({ member, className }: Props) {
-	const [image, setImage] = useState<string | null | undefined>(undefined);
+	const image = (() => {
+		if (typeof member.member === "string") {
+			return null;
+		}
+
+		if (typeof member.member.profile === "string") {
+			return null;
+		}
+
+		if (!member.member.profile) {
+			return null;
+		}
+
+		return member.member.profile?.url;
+	})();
 
 	const name = (() => {
 		if (typeof member.member === "string") {
@@ -21,38 +31,6 @@ export function Member({ member, className }: Props) {
 
 		return member.member.name;
 	})();
-
-	useEffect(() => {
-		if (typeof member.member === "string") {
-			return;
-		}
-
-		if (!member.member.profile) {
-			return;
-		}
-
-		if (typeof member.member.profile !== "string") {
-			setImage(member.member.profile.url);
-			return;
-		}
-
-		const controller = new AbortController();
-
-		fetch(
-			`${process.env.NEXT_PUBLIC_PAYLOAD_CMS_URL}/api/media/${typeof member
-				.member.profile}`,
-			{
-				signal: controller.signal,
-			},
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				setImage((data as Media).url);
-			})
-			.catch(() => setImage(null));
-
-		return () => controller.abort("Component unmounted.");
-	}, [member]);
 
 	const description = member.description || [];
 

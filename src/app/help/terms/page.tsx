@@ -2,7 +2,7 @@ import { Info } from "@payload/types";
 
 export default async function TermsPage() {
 	const request = await fetch(
-		`${process.env.NEXT_PUBLIC_PAYLOAD_CMS_URL}/api/globals/info`,
+		`${process.env.PAYLOAD_CMS_URL}/api/globals/info`,
 		{
 			next: {
 				revalidate: 5 * 60,

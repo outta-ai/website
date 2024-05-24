@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
 	return (
-		<html lang="en">
+		<html lang="ko-KR">
 			<body className="relative">
 				<div className="absolute top-0 left-0 w-full z-50">
 					<Header />
