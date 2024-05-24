@@ -1,15 +1,12 @@
 import { Info } from "@payload/types";
 
 export default async function PrivacyPage() {
-	const request = await fetch(
-		`${process.env.NEXT_PUBLIC_PAYLOAD_CMS_URL}/api/globals/info`,
-		{
-			next: {
-				revalidate: 5 * 60,
-				tags: ["payload"],
-			},
+	const request = await fetch(`${process.env.PAYLOAD_CMS_URL}/api/globals/info`, {
+		next: {
+			revalidate: 5 * 60,
+			tags: ["payload"],
 		},
-	);
+	});
 
 	const dataRaw = await request.json();
 	const data = dataRaw as Info;
