@@ -13,11 +13,10 @@ export default async function LabsPage() {
 	const request = await fetch(
 		`${process.env.PAYLOAD_CMS_URL}/api/globals/website-lab`,
 		{
-			// next: {
-			// 	revalidate: 5 * 60,
-			// 	tags: ["payload"],
-			// },
-			cache: "no-cache",
+			next: {
+				revalidate: 5 * 60,
+				tags: ["payload"],
+			},
 		},
 	);
 
@@ -59,7 +58,7 @@ export default async function LabsPage() {
 					</p>
 				)}
 				<a
-					href={data.registration.link}
+					href="/labs/board?category=faq"
 					className="px-8 py-4 rounded-xl bg-black text-white font-sbaggro"
 				>
 					자주 묻는 질문

@@ -285,28 +285,30 @@ export interface WebsiteLab {
 				id?: string | null;
 		  }[]
 		| null;
-	generations?:
-		| {
-				index: number;
-				start: string;
-				end?: string | null;
-				id?: string | null;
-		  }[]
-		| null;
-	members?:
-		| {
-				role: string;
-				generation: number;
-				member?: (string | null) | Member;
-				works?:
-					| {
-							description: string;
-							id?: string | null;
-					  }[]
-					| null;
-				id?: string | null;
-		  }[]
-		| null;
+	members?: {
+		generations?:
+			| {
+					index: number;
+					start: string;
+					end?: string | null;
+					id?: string | null;
+			  }[]
+			| null;
+		members?:
+			| {
+					role: string;
+					generation: number;
+					member?: (string | null) | Member;
+					works?:
+						| {
+								description: string;
+								id?: string | null;
+						  }[]
+						| null;
+					id?: string | null;
+			  }[]
+			| null;
+	};
 	updatedAt?: string | null;
 	createdAt?: string | null;
 }

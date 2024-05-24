@@ -7,7 +7,6 @@ type Props = {
 };
 
 export function LeadersSection({ boardMembers, executiveMembers }: Props) {
-	console.log(boardMembers);
 	return (
 		<section className="w-full min-h-screen py-12 px-3 lg:px-48">
 			<h2 className="text-4xl text-center font-sbaggro my-16">Leaders</h2>

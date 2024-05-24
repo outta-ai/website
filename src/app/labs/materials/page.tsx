@@ -1,7 +1,9 @@
 import Image from "next/image";
 
 import IconBookOpen from "@/assets/icons/icon_book_open.svg";
-import imageBook from "@/assets/images/image_book.png";
+import { RichText, StyledText } from "@/components/RichText";
+import { getImage } from "@/utils/image";
+import { WebsiteLab } from "@payload/types";
 import classNames from "classnames";
 import { IBM_Plex_Sans_KR } from "next/font/google";
 
@@ -10,29 +12,42 @@ const ibmPlex = IBM_Plex_Sans_KR({
 	subsets: ["latin", "latin-ext"],
 });
 
-export default function LabsMaterials() {
+export default async function LabsMaterialsPage() {
+	const request = await fetch(
+		`${process.env.PAYLOAD_CMS_URL}/api/globals/website-lab`,
+		{
+			next: {
+				revalidate: 5 * 60,
+				tags: ["payload"],
+			},
+		},
+	);
+
+	const dataRaw = await request.json();
+	const data = (dataRaw as WebsiteLab).materials;
+
+	if (!data) {
+		return null;
+	}
+
 	return (
-		<div>
-			<div className="w-full max-w-[1024px] mx-auto lg:px-16 py-12">
-				<div className="relative">
+		<div className="w-full max-w-[1024px] mx-auto lg:px-16 py-12">
+			{data.map((m) => (
+				<div key={m.id} className="relative">
 					<Image
-						src={imageBook}
+						width={240}
+						height={320}
+						src={getImage(m.image)}
 						alt="book"
-						className="rounded-lg shadow-lg absolute bottom-0 left-0"
+						className="absolute bottom-0 left-0 w-[240px] h-full object-contain object-left"
 					/>
 					<div className="flex items-center ml-[240px]">
 						<IconBookOpen className="w-8 h-8" />
-						<p className="ml-2 font-bold text-2xl">머신러닝 첫 단추 끼우기</p>
+						<p className="ml-2 font-bold text-2xl">{m.title}</p>
 					</div>
-					<p className="bg-zinc-100 w-full p-7 pl-[240px] rounded-2xl leading-snug mt-2">
-						대학 수학을 배우지 않았더라도, 고등학교 수학을 잘 배운 사람이라면
-						누구나 읽을 수 있도록 쓰여진 교재다. 2015년 개정 고등학교 수학
-						교육과정(미적분, 기하, 확률과 통계)에 해당하는 수학 지식을 가지고
-						있는 사람이 읽기 적당하다. 수록된 모든 프로그래밍 실습은 Python을
-						기반으로 한다. 실습은 친절한 주석과 부연 설명으로 이루어져 있으므로,
-						Python에 능숙하지 않더라도 천천히 자신의 속도에 맞게 따라가며 학습할
-						수 있다.
-					</p>
+					<RichText className="bg-zinc-100 w-full p-7 pl-[240px] rounded-2xl leading-snug mt-2">
+						{m.description as StyledText}
+					</RichText>
 					<div className="bg-zinc-100 w-full pl-[240px] rounded-2xl leading-snug mt-2 py-2 flex items-center pr-6">
 						<p
 							className={classNames(
@@ -40,16 +55,25 @@ export default function LabsMaterials() {
 								ibmPlex.className,
 							)}
 						>
-							2022 • 홍릉과학출판사
+							{m.year} • {m.publisher}
 						</p>
 						<div className="flex-1" />
-						<p className="mr-6">정가 20,000원</p>
-						<a className="p-2 bg-identity-200 text-identity-800 text-lg leading-normal font-semibold rounded-lg">
-							구매하기
-						</a>
+						<p className="mr-6">정가 {m.price.toLocaleString("en-US")}원</p>
+						{m.link ? (
+							<a
+								href={m.link}
+								className="py-1 px-2 w-16 bg-identity-200 text-identity-800 text-base leading-normal font-semibold rounded-lg text-center"
+							>
+								구매하기
+							</a>
+						) : (
+							<p className="py-1 px-2 w-16 bg-zinc-200 text-zinc-800 text-base leading-normal font-semibold rounded-lg text-center">
+								품절
+							</p>
+						)}
 					</div>
 				</div>
-			</div>
+			))}
 		</div>
 	);
 }

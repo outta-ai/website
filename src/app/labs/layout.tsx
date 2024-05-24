@@ -17,7 +17,7 @@ export default function LabsLayout({ children }: PropsWithChildren) {
 	const pathname = usePathname();
 
 	return (
-		<div className="w-full font-pretendard">
+		<div className="w-full h-full font-pretendard">
 			<div className="w-full min-h-[512px] bg-gradient-main-0.5 overflow-auto">
 				<div className="w-full max-w-[1024px] min-h-28 mt-64 mx-auto px-6 pb-12 lg:px-16">
 					<div className="flex flex-col sm:flex-row gap-[9px]">
@@ -48,7 +48,7 @@ export default function LabsLayout({ children }: PropsWithChildren) {
 					className={classNames(
 						"block w-48 py-4 rounded-md text-center font-medium",
 						ibmPlex.className,
-						pathname === "/labs/materials"
+						pathname.startsWith("/labs/materials")
 							? "text-identity-500 bg-zinc-200 hover:bg-zinc-300"
 							: "text-black bg-white hover:bg-zinc-100",
 					)}
@@ -60,7 +60,7 @@ export default function LabsLayout({ children }: PropsWithChildren) {
 					className={classNames(
 						"block w-48 py-4 rounded-md text-center font-medium",
 						ibmPlex.className,
-						pathname === "/labs/board"
+						pathname.startsWith("/labs/board")
 							? "text-identity-500 bg-zinc-200 hover:bg-zinc-300"
 							: "text-black bg-white hover:bg-zinc-100",
 					)}
@@ -72,7 +72,7 @@ export default function LabsLayout({ children }: PropsWithChildren) {
 					className={classNames(
 						"block w-48 py-4 rounded-md text-center font-medium",
 						ibmPlex.className,
-						pathname === "/labs/members"
+						pathname.startsWith("/labs/members")
 							? "text-identity-500 bg-zinc-200 hover:bg-zinc-300"
 							: "text-black bg-white hover:bg-zinc-100",
 					)}

@@ -15,7 +15,7 @@ const HeaderLinks = [
 	},
 	{
 		name: "AI Playground",
-		href: "/",
+		href: "/playground",
 	},
 	{
 		name: "블로그",
