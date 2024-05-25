@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
 import { ChannelIO } from "@/components/ChannelIO";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "./global.css";
 
 export const metadata: Metadata = {
@@ -41,6 +42,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
 	return (
 		<html lang="ko-KR">
 			<body className="relative">
+				<GoogleTagManager
+					gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER ?? ""}
+				/>
 				<div className="absolute top-0 left-0 w-full z-50">
 					<Header />
 				</div>

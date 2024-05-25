@@ -39,7 +39,7 @@ export default async function LabsBoardPage({ params: { id } }: Props) {
 					</li>
 				))}
 			</ul>
-			<div className="flex-1">
+			<div className="flex-1 mb-12">
 				<div className="flex items-end">
 					<h2 className="text-4xl font-bold">{data.title}</h2>
 					<div className="flex-1" />
