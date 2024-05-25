@@ -33,22 +33,22 @@ export default async function LabsMaterialsPage() {
 	return (
 		<div className="w-full max-w-[1024px] mx-auto lg:px-16 py-12">
 			{data.map((m) => (
-				<div key={m.id} className="relative">
+				<div key={m.id} className="relative mb-12">
 					<Image
 						width={240}
 						height={320}
 						src={getImage(m.image)}
 						alt="book"
-						className="absolute bottom-0 left-0 w-[240px] h-full object-contain object-left"
+						className="absolute bottom-0 left-0 w-[240px] h-full object-contain object-left bg-white"
 					/>
-					<div className="flex items-center ml-[240px]">
+					<div className="flex items-center ml-[254px]">
 						<IconBookOpen className="w-8 h-8" />
 						<p className="ml-2 font-bold text-2xl">{m.title}</p>
 					</div>
-					<RichText className="bg-zinc-100 w-full p-7 pl-[240px] rounded-2xl leading-snug mt-2">
+					<RichText className="bg-zinc-100 w-full p-7 pl-[254px] rounded-2xl leading-snug mt-2">
 						{m.description as StyledText}
 					</RichText>
-					<div className="bg-zinc-100 w-full pl-[240px] rounded-2xl leading-snug mt-2 py-2 flex items-center pr-6">
+					<div className="bg-zinc-100 w-full pl-[254px] rounded-2xl leading-snug mt-2 py-2 flex items-center pr-6">
 						<p
 							className={classNames(
 								"text-[rgba(63,64,72,0.70)]",
@@ -62,12 +62,12 @@ export default async function LabsMaterialsPage() {
 						{m.link ? (
 							<a
 								href={m.link}
-								className="py-1 px-2 w-16 bg-identity-200 text-identity-800 text-base leading-normal font-semibold rounded-lg text-center"
+								className="py-1 px-2 w-18 bg-identity-200 text-identity-800 text-base leading-normal font-semibold rounded-lg text-center"
 							>
 								구매하기
 							</a>
 						) : (
-							<p className="py-1 px-2 w-16 bg-zinc-200 text-zinc-800 text-base leading-normal font-semibold rounded-lg text-center">
+							<p className="py-1 px-2 w-18 bg-zinc-200 text-zinc-800 text-base leading-normal font-semibold rounded-lg text-center">
 								품절
 							</p>
 						)}
