@@ -18,8 +18,8 @@ export function ReviewSection({ reviews }: Props) {
 						polygonDirection={index % 2 === 0 ? "left" : "right"}
 						className={
 							index % 2 === 0
-								? "[&>div]:bg-identity-100 [&>svg]:fill-identity-100 sm:[&>svg]:bottom-[50px]"
-								: "[&>div]:bg-zinc-100 [&>svg]:fill-zinc-100 sm:mt-12"
+								? "[&>div]:bg-identity-100 [&>svg]:fill-identity-100 mb-0 sm:mb-24"
+								: "[&>div]:bg-zinc-100 [&>svg]:fill-zinc-100"
 						}
 					/>
 				))}

@@ -18,18 +18,22 @@ export function ReviewMessage({
 	className,
 }: Props) {
 	return (
-		<div className={classNames("relative pb-8", className)}>
-			<div className="rounded-2xl p-6">
-				<p className="font-semibold">{review.name}</p>
-				<RichText className="mt-3">{review.description as StyledText}</RichText>
+		<div className="flex items-end">
+			<div className={classNames("relative pb-8", className)}>
+				<div className="rounded-2xl p-6">
+					<p className="font-semibold">{review.name}</p>
+					<RichText className="mt-3">
+						{review.description as StyledText}
+					</RichText>
+				</div>
+				<IconMessagePolygon
+					className={classNames(
+						"absolute bottom-[2px] right-8",
+						polygonLocation === "left" ? "left-8" : "right-8",
+						polygonDirection === "left" ? "transform scale-x-[-1]" : "",
+					)}
+				/>
 			</div>
-			<IconMessagePolygon
-				className={classNames(
-					"absolute bottom-[2px] right-8",
-					polygonLocation === "left" ? "left-8" : "right-8",
-					polygonDirection === "left" ? "transform scale-x-[-1]" : "",
-				)}
-			/>
 		</div>
 	);
 }
