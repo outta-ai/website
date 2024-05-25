@@ -40,6 +40,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: process.env.NEXT_PUBLIC_IMAGE_CLOUDFRONT_URL,
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
