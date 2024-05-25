@@ -37,7 +37,7 @@ export default async function LabsPage() {
 					<>
 						<div className="absolute animate-bounce top-0 flex flex-col items-center mr-0 sm:mr-64">
 							<p className="bg-[#D9D9D9] text-identity-800 font-bold px-4 py-2 rounded-full">
-								3기 부트캠프 신청{" "}
+								4기 부트캠프 신청{" "}
 								<span className="text-identity-400">
 									{Math.floor(left / 1000 / 60 / 60 / 24)}일 후 마감!
 								</span>
