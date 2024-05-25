@@ -20,7 +20,7 @@ export function RecommendSection({ recommend }: Props) {
 						return (
 							<div
 								key={r.id}
-								className="w-full relative max-w-[480px] min-h-[192px] rounded-xl bg-zinc-100"
+								className="w-full relative max-w-[320px] min-h-[192px] rounded-xl bg-zinc-100 shrink-0"
 							>
 								{r.image && (
 									<div className="h-[192px] rounded-xl overflow-hidden relative">

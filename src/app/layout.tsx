@@ -30,6 +30,11 @@ export const metadata: Metadata = {
 			url: "/icons/apple-touch-icon.png",
 		},
 	],
+	openGraph: {
+		type: "website",
+		locale: "ko-KR",
+		images: "https://outta.ai/images/opengraph.png",
+	},
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
