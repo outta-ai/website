@@ -62,12 +62,12 @@ export default async function LabsMaterialsPage() {
 						{m.link ? (
 							<a
 								href={m.link}
-								className="py-1 px-2 w-16 bg-identity-200 text-identity-800 text-base leading-normal font-semibold rounded-lg text-center"
+								className="py-1 px-2 w-18 bg-identity-200 text-identity-800 text-base leading-normal font-semibold rounded-lg text-center"
 							>
 								구매하기
 							</a>
 						) : (
-							<p className="py-1 px-2 w-16 bg-zinc-200 text-zinc-800 text-base leading-normal font-semibold rounded-lg text-center">
+							<p className="py-1 px-2 w-18 bg-zinc-200 text-zinc-800 text-base leading-normal font-semibold rounded-lg text-center">
 								품절
 							</p>
 						)}
