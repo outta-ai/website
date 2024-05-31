@@ -79,7 +79,7 @@ export default async function LabsMembersPage({ searchParams }: Props) {
 									<span className="text-sm">
 										{new Date(gen.end).getFullYear()}-
 										{(new Date(gen.end).getMonth() + 1)
-											.toString(2)
+											.toString()
 											.padStart(2, "0")}
 									</span>
 								) : (
