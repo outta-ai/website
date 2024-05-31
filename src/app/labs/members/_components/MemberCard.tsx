@@ -55,7 +55,7 @@ export function MemberCard({ member, className }: Props) {
 							className="w-16 h-16 rounded-full"
 						/>
 					) : (
-						<div className="w-16 h-16 rounded-full" />
+						<div className="w-16 h-16 rounded-full bg-zinc-200" />
 					)}
 					<div className="ml-4 flex flex-col justify-center">
 						<div className="flex items-center">
