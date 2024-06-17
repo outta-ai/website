@@ -4,7 +4,6 @@ import { PropsWithChildren } from "react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
-import { ChannelIO } from "@/components/ChannelIO";
 import { GoogleTagManager } from "@next/third-parties/google";
 import "./global.css";
 
@@ -52,7 +51,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
 					{children}
 				</main>
 				<Footer />
-				<ChannelIO />
+				{/* <ChannelIO /> */}
 			</body>
 		</html>
 	);
