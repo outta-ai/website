@@ -6,3 +6,7 @@ export function unsafeHash(key: string) {
 	}
 	return hash >>> 0; // Ensure the hash is a non-negative integer
 }
+
+export function Uint8ArrayToHex(array: Uint8Array) {
+	return [...array].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
