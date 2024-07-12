@@ -4,9 +4,12 @@ import Link from "next/link";
 
 import { faBars, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { QueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
+import { UserMenu } from "./UserMenu";
 
 const HeaderLinks = [
 	{
@@ -26,10 +29,33 @@ const HeaderLinks = [
 export function Header() {
 	const [menuOpen, setMenuOpen] = useState(false);
 
+	const router = useRouter();
+
+	const [queryClient, _] = useState(
+		new QueryClient({
+			defaultOptions: {
+				queries: {
+					refetchOnMount: true,
+					refetchOnWindowFocus: true,
+					refetchOnReconnect: true,
+					refetchInterval: false,
+				},
+			},
+		}),
+	);
+
+	const params = useSearchParams();
+	useEffect(() => {
+		if (params.has("logout")) {
+			queryClient.invalidateQueries({ exact: true, queryKey: ["me"] });
+			router.replace("/");
+		}
+	}, [router, queryClient, params]);
+
 	return (
 		<>
-			<header className="w-full max-w-[896px] lg:max-w-none h-28 pt-12 mx-auto lg:px-16 flex overflow-hidden items-center">
-				<Logo className="ml-[min(48px,5%)]" />
+			<header className="w-full max-w-[896px] lg:max-w-none h-28 pt-12 mx-auto lg:px-16 flex items-center">
+				<Logo className="ml-[min(48px,5vw)]" />
 				<ul className="hidden lg:flex flex-1 justify-center items-center">
 					{HeaderLinks.map((link) => (
 						<li key={link.name} className="w-32 font-hanamdaum text-center">
@@ -37,8 +63,8 @@ export function Header() {
 						</li>
 					))}
 				</ul>
-				<div className="hidden lg:block w-60">
-					<Link href="/auth/login">로그인</Link>
+				<div className="hidden lg:flex justify-end items-center w-60 h-full mr-[min(48px,5vw)]">
+					<UserMenu />
 				</div>
 				<div className="flex lg:hidden w-16 h-16 justify-center items-center mr-[min(48px,5%)]">
 					<FontAwesomeIcon
@@ -68,3 +94,7 @@ export function Header() {
 		</>
 	);
 }
+
+export const Fallback = (
+	<div className="w-full max-w-[896px] lg:max-w-none h-28 pt-12 mx-auto lg:px-16 flex items-center" />
+);

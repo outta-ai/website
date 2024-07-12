@@ -1,10 +1,10 @@
 import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Info } from "@payload/types";
+import type { Info } from "@payload/types";
 
 export async function Footer() {
 	const request = await fetch(
-		`${process.env.PAYLOAD_CMS_URL}/api/globals/info`,
+		`${process.env.NEXT_PUBLIC_API_URL}/api/globals/info`,
 		{
 			next: {
 				revalidate: 5 * 60,
@@ -48,7 +48,7 @@ export async function Footer() {
 						))}
 					</div>
 				</div>
-				<div className="w-64 mt-12 sm:mt-0">
+				<div className="w-48 sm:w-64 mt-12 sm:mt-0">
 					<p className="text-lg mb-3 font-bold">관련 사이트</p>
 					{data.external?.map((item) => (
 						<a

@@ -80,6 +80,6 @@ const config: Config = {
 				"linear-gradient(171deg, rgba(38, 50, 56, 0.00) 12.91%, #000 94.05%)",
 		},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/typography")],
 };
 export default config;
