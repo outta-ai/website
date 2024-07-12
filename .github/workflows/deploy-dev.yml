@@ -1,9 +1,9 @@
-name: Deploy Website (main)
+name: Deploy Website (dev)
 
 on:
   push:
-    # branches:
-    #   - develop
+    branches:
+      - develop
   workflow_dispatch:
 
 permissions:
