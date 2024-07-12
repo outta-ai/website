@@ -25,4 +25,28 @@ export default $config({
 			},
 		});
 	},
+	console: {
+		autodeploy: {
+			target(event) {
+				if (event.type === "branch" && event.branch === "develop") {
+					return {
+						stage: "develop",
+						runner: {
+							engine: "codebuild",
+							compute: "small",
+						},
+					};
+				}
+				if (event.type === "branch" && event.branch === "main") {
+					return {
+						stage: "production",
+						runner: {
+							engine: "codebuild",
+							compute: "small",
+						},
+					};
+				}
+			},
+		},
+	},
 });
