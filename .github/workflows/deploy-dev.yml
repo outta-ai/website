@@ -34,4 +34,4 @@ jobs:
           corepack enable
           curl -fsSL https://ion.sst.dev/install | bash
           pnpm install
-          pnpm deploy:dev
+          sst deploy --stage develop
