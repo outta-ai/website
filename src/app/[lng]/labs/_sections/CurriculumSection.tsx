@@ -1,4 +1,4 @@
-import { WebsiteLab } from "@payload/types";
+import type { WebsiteLab } from "@payload/types";
 import { Curriculum } from "./_components/Curriculum";
 
 type Props = {

@@ -1,5 +1,3 @@
-import { Langauges } from "@/lib/i18n";
-
 export default function RegisterPage() {
 	return (
 		<div className="w-full h-dvh flex flex-col justify-center items-center sm:p-3">
@@ -23,8 +21,4 @@ export default function RegisterPage() {
 			</div>
 		</div>
 	);
-}
-
-export async function generateStaticParams() {
-	return Langauges.map((lng) => ({ lng }));
 }

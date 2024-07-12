@@ -1,5 +1,5 @@
-import { RichText, StyledText } from "@/components/RichText";
-import { WebsiteLab } from "@payload/types";
+import { RichText, type StyledText } from "@/components/RichText";
+import type { WebsiteLab } from "@payload/types";
 
 type Props = {
 	characteristics: WebsiteLab["index"]["characteristics"];

@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { Langauges } from "@/lib/i18n";
 import { GoogleLoginButton } from "./_components/GoogleLoginButton";
 
 export default function LoginPage() {
@@ -17,8 +16,4 @@ export default function LoginPage() {
 			</div>
 		</div>
 	);
-}
-
-export async function generateStaticParams() {
-	return Langauges.map((lng) => ({ lng }));
 }

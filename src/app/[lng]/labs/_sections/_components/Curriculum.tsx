@@ -1,5 +1,5 @@
 import { getImage } from "@/utils/image";
-import { WebsiteLab } from "@payload/types";
+import type { WebsiteLab } from "@payload/types";
 import Image from "next/image";
 
 type Props = {

@@ -1,6 +1,6 @@
-import { RichText, StyledText } from "@/components/RichText";
+import { RichText, type StyledText } from "@/components/RichText";
 import { getImage } from "@/utils/image";
-import { WebsiteLab } from "@payload/types";
+import type { WebsiteLab } from "@payload/types";
 import classNames from "classnames";
 import Image from "next/image";
 

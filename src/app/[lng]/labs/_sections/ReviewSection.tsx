@@ -1,4 +1,4 @@
-import { WebsiteLab } from "@payload/types";
+import type { WebsiteLab } from "@payload/types";
 import { ReviewMessage } from "./_components/ReviewMessage";
 
 type Props = {

@@ -1,5 +1,4 @@
-import { Langauges } from "@/lib/i18n";
-import { Info } from "@payload/types";
+import type { Info } from "@payload/types";
 
 export default async function PrivacyPage() {
 	const request = await fetch(
@@ -21,8 +20,4 @@ export default async function PrivacyPage() {
 			<p className="text-sm">{data.privacy}</p>
 		</div>
 	);
-}
-
-export async function generateStaticParams() {
-	return Langauges.map((lng) => ({ lng }));
 }

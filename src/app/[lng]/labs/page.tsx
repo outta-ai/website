@@ -1,4 +1,4 @@
-import { WebsiteLab } from "@payload/types";
+import type { WebsiteLab } from "@payload/types";
 
 import { CharacteristicsSection } from "./_sections/CharacteristicsSection";
 import { CurriculumSection } from "./_sections/CurriculumSection";
@@ -8,7 +8,6 @@ import { ReviewSection } from "./_sections/ReviewSection";
 import IconPopupPolygon from "@/assets/icons/icon_popup_polygon.svg";
 import IconQuestion from "@/assets/icons/icon_question.svg";
 import IconWrite from "@/assets/icons/icon_write.svg";
-import { Langauges } from "@/lib/i18n";
 
 export default async function LabsPage() {
 	const request = await fetch(
@@ -68,8 +67,4 @@ export default async function LabsPage() {
 			</div>
 		</div>
 	);
-}
-
-export async function generateStaticParams() {
-	return Langauges.map((lng) => ({ lng }));
 }

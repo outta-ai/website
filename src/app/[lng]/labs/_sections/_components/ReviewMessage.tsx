@@ -1,7 +1,7 @@
-import { WebsiteLab } from "@payload/types";
+import type { WebsiteLab } from "@payload/types";
 
 import IconMessagePolygon from "@/assets/icons/icon_message_polygon.svg";
-import { RichText, StyledText } from "@/components/RichText";
+import { RichText, type StyledText } from "@/components/RichText";
 import classNames from "classnames";
 
 type Props = {

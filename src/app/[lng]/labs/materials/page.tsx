@@ -1,10 +1,9 @@
 import Image from "next/image";
 
 import IconBookOpen from "@/assets/icons/icon_book_open.svg";
-import { RichText, StyledText } from "@/components/RichText";
-import { Langauges } from "@/lib/i18n";
+import { RichText, type StyledText } from "@/components/RichText";
 import { getImage } from "@/utils/image";
-import { WebsiteLab } from "@payload/types";
+import type { WebsiteLab } from "@payload/types";
 import classNames from "classnames";
 import { IBM_Plex_Sans_KR } from "next/font/google";
 
@@ -77,8 +76,4 @@ export default async function LabsMaterialsPage() {
 			))}
 		</div>
 	);
-}
-
-export async function generateStaticParams() {
-	return Langauges.map((lng) => ({ lng }));
 }

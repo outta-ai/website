@@ -1,4 +1,4 @@
-import { WebsiteMain } from "@payload/types";
+import type { WebsiteMain } from "@payload/types";
 import { Fragment } from "react";
 
 type Props = {

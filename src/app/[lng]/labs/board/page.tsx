@@ -1,8 +1,7 @@
-import { LabPost } from "@payload/types";
+import type { LabPost } from "@payload/types";
 import classNames from "classnames";
 import { redirect } from "next/navigation";
 import { categories } from "./constants";
-import { Langauges } from "@/lib/i18n";
 
 type Props = {
 	searchParams?: {
@@ -87,8 +86,4 @@ export default async function LabsBoardPage({ searchParams }: Props) {
 			</div>
 		</div>
 	);
-}
-
-export async function generateStaticParams() {
-	return Langauges.map((lng) => ({ lng }));
 }

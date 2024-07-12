@@ -1,5 +1,5 @@
 import Negotiator from "negotiator";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { Langauges } from "./lib/i18n";
 
 function LanguageLayer(req: NextRequest) {

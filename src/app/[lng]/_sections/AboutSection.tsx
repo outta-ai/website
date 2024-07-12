@@ -1,4 +1,4 @@
-import { RichText, StyledText } from "@/components/RichText";
+import { RichText, type StyledText } from "@/components/RichText";
 
 type Props = {
 	summary: StyledText;

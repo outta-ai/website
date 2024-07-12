@@ -1,7 +1,6 @@
 import type { StyledText } from "@/components/RichText";
 import type { WebsiteMain } from "@payload/types";
 
-import { Langauges } from "@/lib/i18n";
 import { AboutSection } from "./_sections/AboutSection";
 import { CoreValueSeciton } from "./_sections/CoreValueSection";
 import { HistorySecion } from "./_sections/HistorySection";
@@ -49,8 +48,4 @@ export default async function HomePage() {
 			/>
 		</>
 	);
-}
-
-export async function generateStaticParams() {
-	return Langauges.map((lng) => ({ lng }));
 }

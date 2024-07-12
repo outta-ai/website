@@ -1,8 +1,7 @@
-import { RichText, StyledText } from "@/components/RichText";
-import { LabPost } from "@payload/types";
+import { RichText, type StyledText } from "@/components/RichText";
+import type { LabPost } from "@payload/types";
 import classNames from "classnames";
 import { categories } from "../constants";
-import { Langauges } from "@/lib/i18n";
 
 type Props = {
 	params: {
@@ -60,8 +59,4 @@ export default async function LabsBoardPage({ params: { id } }: Props) {
 			</div>
 		</div>
 	);
-}
-
-export async function generateStaticParams() {
-	return Langauges.map((lng) => ({ lng }));
 }

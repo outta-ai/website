@@ -1,10 +1,11 @@
-import { Metadata } from "next";
-import { PropsWithChildren, Suspense } from "react";
+import type { Metadata } from "next";
+import { type PropsWithChildren, Suspense } from "react";
 
 import { Footer } from "@/components/Footer";
 import { Fallback, Header } from "@/components/Header";
 
 import "@/app/global.css";
+import { Langauges } from "@/lib/i18n";
 import { GoogleTagManager } from "@next/third-parties/google";
 import RootProviders from "./providers";
 
@@ -60,4 +61,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
 			</body>
 		</html>
 	);
+}
+
+export async function generateStaticParams() {
+	return Langauges.map((lng) => ({ lng }));
 }

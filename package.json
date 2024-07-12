@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "bash `pwd`/env-setup.sh && next build",
+    "build": "bash `pwd`/env-setup.sh \u0026\u0026 next build",
+    "dev": "sst dev sst dev next dev",
+    "lint": "next lint",
     "start": "next start",
-    "lint": "next lint"
+    "deploy": "sst deploy",
+    "deploy:dev": "STAGE=develop sst deploy --stage develop"
   },
   "dependencies": {
     "@channel.io/channel-web-sdk-loader": "^1.1.7",
@@ -43,6 +45,7 @@
     "sharp": "^0.33.4",
     "slate": "^0.103.0",
     "slate-react": "^0.106.0",
+    "sst": "ion",
     "zod": "^3.23.8"
   },
   "devDependencies": {

@@ -1,5 +1,4 @@
-import { Langauges } from "@/lib/i18n";
-import { WebsiteLab } from "@payload/types";
+import type { WebsiteLab } from "@payload/types";
 import classNames from "classnames";
 import { MemberCard } from "./_components/MemberCard";
 
@@ -97,8 +96,4 @@ export default async function LabsMembersPage({ searchParams }: Props) {
 			</div>
 		</div>
 	);
-}
-
-export async function generateStaticParams() {
-	return Langauges.map((lng) => ({ lng }));
 }

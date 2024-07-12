@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { usePathname } from "next/navigation";
 
 import { IBM_Plex_Sans_KR } from "next/font/google";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 const ibmPlex = IBM_Plex_Sans_KR({
 	weight: ["400", "500", "600", "700"],

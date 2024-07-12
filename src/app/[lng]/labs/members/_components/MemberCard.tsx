@@ -1,6 +1,6 @@
 "use client";
 
-import { WebsiteLab } from "@payload/types";
+import type { WebsiteLab } from "@payload/types";
 import classNames from "classnames";
 import Image from "next/image";
 
