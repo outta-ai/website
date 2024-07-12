@@ -39,7 +39,7 @@ jobs:
       - name: Deploy to AWS (develop)
         if: github.ref_name == 'develop'
         run: |
-          corepack enable && \
-          curl -fsSL https://ion.sst.dev/install | bash && \
-          pnpm install && \
+          corepack enable
+          curl -fsSL https://ion.sst.dev/install | bash
+          pnpm install
           pnpm deploy:dev
