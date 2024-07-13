@@ -131,10 +131,34 @@ export async function getPayloadAll<K extends keyof Config["collections"]>(
 	return result;
 }
 
+export type Optional<T> = T | null | undefined;
+
 export function getID<T extends { id: string }>(data: T | string) {
 	if (typeof data === "string") {
 		return data;
 	}
 
 	return data.id;
+}
+
+export function getOptionalID<T extends { id: string } | null>(
+	data: Optional<T | string>,
+) {
+	if (!data) {
+		return null;
+	}
+
+	if (typeof data === "string") {
+		return data;
+	}
+
+	return data.id;
+}
+
+export function mergeQuery<T, U>(data: Optional<T>, queryData: Optional<U>) {
+	if (typeof data === "object") {
+		return data;
+	}
+
+	return queryData;
 }

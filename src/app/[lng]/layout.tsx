@@ -39,9 +39,16 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({ children }: PropsWithChildren) {
+type Props = {
+	params: { lng: string };
+};
+
+export default function RootLayout({
+	children,
+	params: { lng },
+}: PropsWithChildren<Props>) {
 	return (
-		<html lang="ko-KR">
+		<html lang={lng}>
 			<body className="relative">
 				<RootProviders>
 					<GoogleTagManager

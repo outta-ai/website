@@ -24,7 +24,7 @@ import {
 	faStrikethrough,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 
 export const extensions = (readOnly?: boolean) => {
 	if (!readOnly) {
@@ -146,10 +146,14 @@ function TiptapToolbar({ editor }: ToolbarProps) {
 					const formData = new FormData();
 					formData.append("file", file);
 					formData.append("name", crypto.randomUUID());
-					const response = await fetch("/api/attachments", {
-						method: "POST",
-						body: formData,
-					});
+					const response = await fetch(
+						`${process.env.NEXT_PUBLIC_API_URL}/api/attachments`,
+						{
+							method: "POST",
+							body: formData,
+							credentials: "include",
+						},
+					);
 					if (!response.ok) return;
 					const textData = await response.text();
 
@@ -185,30 +189,30 @@ type Props = {
 	editorClass?: string;
 };
 
-export function TiptapEditor({
-	content,
-	readOnly,
-	className,
-	editorClass,
-}: Props) {
-	const editor = useEditor({
-		extensions: extensions(readOnly),
-		content,
-		editorProps: {
-			attributes: {
-				class: classNames(
-					"max-w-full prose prose-sm sm:prose-base font-pretendard focus:outline-none py-4",
-					editorClass,
-				),
+export const TiptapEditor = forwardRef(
+	({ content, readOnly, className, editorClass }: Props, ref) => {
+		const editor = useEditor({
+			extensions: extensions(readOnly),
+			content,
+			editorProps: {
+				attributes: {
+					class: classNames(
+						"max-w-full prose prose-sm sm:prose-base font-pretendard focus:outline-none py-4",
+						editorClass,
+						readOnly ? "" : "px-4",
+					),
+				},
 			},
-		},
-		editable: !readOnly,
-	});
+			editable: !readOnly,
+		});
 
-	return (
-		<div className={className}>
-			{!readOnly && <TiptapToolbar editor={editor} />}
-			<EditorContent editor={editor} readOnly={readOnly} />
-		</div>
-	);
-}
+		useImperativeHandle(ref, () => ({ editor }));
+
+		return (
+			<div className={className}>
+				{!readOnly && <TiptapToolbar editor={editor} />}
+				<EditorContent editor={editor} readOnly={readOnly} />
+			</div>
+		);
+	},
+);

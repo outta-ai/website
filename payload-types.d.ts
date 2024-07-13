@@ -16,6 +16,7 @@ export interface Config {
 		projects: Project;
 		boards: Board;
 		posts: Post;
+		comments: Comment;
 		"payload-preferences": PayloadPreference;
 		"payload-migrations": PayloadMigration;
 	};
@@ -188,15 +189,18 @@ export interface Post {
 		| null;
 	author: string | Member;
 	board: string | Board;
-	comments?:
-		| {
-				content?: string | null;
-				author: string | Member;
-				createdAt: string;
-				updatedAt: string;
-				id?: string | null;
-		  }[]
-		| null;
+	updatedAt: string;
+	createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comments".
+ */
+export interface Comment {
+	id: string;
+	content?: string | null;
+	author: string | Member;
+	post: string | Post;
 	updatedAt: string;
 	createdAt: string;
 }

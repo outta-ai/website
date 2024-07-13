@@ -169,18 +169,15 @@ export const postSchema = z.object({
 	content: z.array(z.record(z.unknown())).optional().nullable(),
 	author: z.union([z.string(), memberSchema]),
 	board: z.union([z.string(), boardSchema]),
-	comments: z
-		.array(
-			z.object({
-				content: z.string().optional().nullable(),
-				author: z.union([z.string(), memberSchema]),
-				createdAt: z.string(),
-				updatedAt: z.string(),
-				id: z.string().optional().nullable(),
-			}),
-		)
-		.optional()
-		.nullable(),
+	updatedAt: z.string(),
+	createdAt: z.string(),
+});
+
+export const commentSchema = z.object({
+	id: z.string(),
+	content: z.string().optional().nullable(),
+	author: z.union([z.string(), memberSchema]),
+	post: z.union([z.string(), postSchema]),
 	updatedAt: z.string(),
 	createdAt: z.string(),
 });
@@ -460,6 +457,7 @@ export const configSchema = z.object({
 		projects: projectSchema,
 		boards: boardSchema,
 		posts: postSchema,
+		comments: commentSchema,
 		"payload-preferences": payloadPreferenceSchema,
 		"payload-migrations": payloadMigrationSchema,
 	}),

@@ -1,56 +1,82 @@
+import { useMe, useMember } from "@/hooks/payload";
 import { shortDate } from "@/lib/date";
-import { getID, getPayloadOne } from "@/lib/payload";
-import { getUserInfo } from "@/lib/user";
-import type { Post } from "@payload/types";
-import { useQuery } from "@tanstack/react-query";
+import { getID, mergeQuery } from "@/lib/payload";
+import type { Comment as CommentType } from "@payload/types";
+import { useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
-import { useState } from "react";
-
-type Comment = Post["comments"] extends (infer T)[] | null | undefined
-	? T
-	: never;
+import { type FormEvent, useCallback, useState } from "react";
 
 type Props = {
-	comment: Comment | null | undefined;
-	parent: Post;
+	comment: CommentType;
 	className?: string;
 };
 
-export function Comment({ comment, parent, className }: Props) {
+export function Comment({ comment, className }: Props) {
+	const queryClient = useQueryClient();
+
 	const [onEdit, setOnEdit] = useState(false);
 
-	const authorId = comment?.author && getID(comment.author);
-	const { data, isLoading } = useQuery({
-		queryKey: ["member", authorId],
-		queryFn: () =>
-			getPayloadOne(
-				"members",
-				authorId || "",
-				undefined,
-				new URLSearchParams({ "parent[post]": parent.id }),
-			),
-		enabled: typeof comment?.author === "string",
-	});
-
-	const { data: me } = useQuery({
-		queryKey: ["me"],
-		queryFn: () => getUserInfo({ refresh: true }),
-	});
-
-	const author = typeof comment?.author === "object" ? comment.author : data;
-
-	if (isLoading || !comment || !author) {
-		return null;
-	}
+	const me = useMe();
+	const { data: authorQuery } = useMember(comment.author);
+	const author = mergeQuery(comment.author, authorQuery);
+	const authorId = getID(comment.author);
 
 	const updatedAt =
 		comment.createdAt !== comment.updatedAt &&
 		`(${shortDate(new Date(comment.updatedAt))})`;
 
+	const modifyComment = useCallback(
+		async (e: FormEvent<HTMLFormElement>) => {
+			e.preventDefault();
+			const formData = new FormData(e.currentTarget);
+
+			await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/api/comments/${comment.id}`,
+				{
+					method: "PATCH",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ content: formData.get("content") }),
+					credentials: "include",
+				},
+			);
+
+			queryClient.invalidateQueries({
+				queryKey: ["post", getID(comment.post), "comments"],
+			});
+
+			setOnEdit(false);
+		},
+		[queryClient, comment],
+	);
+
+	const deleteComment = useCallback(async () => {
+		await fetch(
+			`${process.env.NEXT_PUBLIC_API_URL}/api/comments/${comment.id}`,
+			{
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ deletedAt: new Date().toISOString() }),
+				credentials: "include",
+			},
+		);
+
+		queryClient.invalidateQueries({
+			queryKey: ["post", getID(comment.post), "comments"],
+		});
+	}, [queryClient, comment]);
+
 	return (
 		<div className={className}>
 			<div className="flex items-center">
-				<p className="font-semibold">{author.name}</p>
+				<p
+					className={classNames("font-semibold", author ? "" : "text-gray-400")}
+				>
+					{author?.name || "로딩중"}
+				</p>
 				<div className="flex-1" />
 				<button
 					type="button"
@@ -64,6 +90,7 @@ export function Comment({ comment, parent, className }: Props) {
 				</button>
 				<button
 					type="button"
+					onClick={deleteComment}
 					className={classNames(
 						me?.id === authorId && !onEdit ? "block" : "hidden",
 						"font-semibold px-2 hover:underline",
@@ -77,13 +104,28 @@ export function Comment({ comment, parent, className }: Props) {
 				</p>
 			</div>
 			<p className={onEdit ? "hidden" : "block"}>{comment.content}</p>
-			<textarea
+			<form
+				onSubmit={modifyComment}
 				className={classNames(
-					onEdit ? "block" : "hidden",
-					"w-full mt-3 p-2 resize-none border border-300 outline-none",
+					onEdit ? "flex flex-col" : "hidden",
+					"w-full mt-3 items-end",
 				)}
-				defaultValue={comment.content || ""}
-			/>
+			>
+				<textarea
+					className={classNames(
+						onEdit ? "block" : "hidden",
+						"w-full p-2 resize-none border border-300 outline-none",
+					)}
+					name="content"
+					defaultValue={comment.content || ""}
+				/>
+				<button
+					type="submit"
+					className="mt-3 font-semibold border border-gray-300 px-4 py-2"
+				>
+					확인
+				</button>
+			</form>
 		</div>
 	);
 }

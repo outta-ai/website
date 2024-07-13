@@ -19,10 +19,14 @@ const handleImage =
 			formData.append("file", file);
 			formData.append("name", crypto.randomUUID());
 
-			const response = await fetch("/api/attachments", {
-				method: "POST",
-				body: formData,
-			});
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/api/attachments`,
+				{
+					method: "POST",
+					body: formData,
+					credentials: "include",
+				},
+			);
 			if (!response.ok) return;
 			const textData = await response.text();
 

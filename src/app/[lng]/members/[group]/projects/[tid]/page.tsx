@@ -5,6 +5,7 @@ import { useEffect, useMemo } from "react";
 import { getPayloadAll, getPayloadOne } from "@/lib/payload";
 import { useQuery } from "@tanstack/react-query";
 import { BoardBlock } from "./_blocks/BoardBlock";
+import { useProject } from "@/hooks/payload";
 
 type Props = {
 	params: {
@@ -14,41 +15,21 @@ type Props = {
 };
 
 export default function ProjectPage({ params: { tid, group } }: Props) {
-	const {
-		isLoading,
-		isError,
-		data: project,
-		error,
-	} = useQuery({
-		queryKey: ["project", tid],
-		queryFn: async () => {
-			if (/^[0-9a-fA-F]{24}$/.test(tid)) {
-				return getPayloadOne("projects", tid);
-			}
+	const { isLoading, isError, data: project, error } = useProject(group, tid);
 
-			const result = await getPayloadAll("projects", {
-				link: { equals: tid },
-				category: { equals: group },
-			});
+	useEffect(
+		function rewriteTid() {
+			if (!project?.link) return;
 
-			if (result.totalDocs !== 1) {
-				throw new Error("Project not found");
-			}
+			if (!/^[0-9a-fA-F]{24}$/.test(tid)) return;
 
-			return result.docs[0];
+			const url = new URL(window.location.href);
+			const language = url.pathname.split("/")[1];
+			url.pathname = `/${language}/members/${group}/projects/${project.link}`;
+			history.replaceState(null, "", url);
 		},
-	});
-
-	useEffect(() => {
-		if (!project?.link) return;
-
-		if (!/^[0-9a-fA-F]{24}$/.test(tid)) return;
-
-		const url = new URL(window.location.href);
-		const language = url.pathname.split("/")[1];
-		url.pathname = `/${language}/members/${group}/projects/${project.link}`;
-		history.replaceState(null, "", url);
-	}, [project, tid, group]);
+		[project, tid, group],
+	);
 
 	const baseUrl = useMemo(() => {
 		if (typeof window === "undefined") return "en";
@@ -84,7 +65,15 @@ export default function ProjectPage({ params: { tid, group } }: Props) {
 			)}
 			{project.blocks?.map((block) => {
 				if (block.blockType === "board") {
-					return <BoardBlock key={block.id} block={block} baseUrl={baseUrl} />;
+					return (
+						<BoardBlock
+							key={block.id}
+							block={block}
+							baseUrl={baseUrl}
+							tid={tid}
+							group={group}
+						/>
+					);
 				}
 				return null;
 			})}
