@@ -2,10 +2,8 @@
 
 import { useEffect, useMemo } from "react";
 
-import { getPayloadAll, getPayloadOne } from "@/lib/payload";
-import { useQuery } from "@tanstack/react-query";
-import { BoardBlock } from "./_blocks/BoardBlock";
 import { useProject } from "@/hooks/payload";
+import { BoardBlock } from "./_blocks/BoardBlock";
 
 type Props = {
 	params: {

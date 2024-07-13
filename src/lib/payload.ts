@@ -45,6 +45,16 @@ export const errorSchema = z.object({
 	),
 });
 
+export const responseSchema = <T extends z.ZodType>(schema: T) => {
+	return z.union([
+		z.object({
+			doc: schema,
+			message: z.string(),
+		}),
+		errorSchema,
+	]);
+};
+
 function collectionNameToSchemaKey<K extends keyof Config["collections"]>(
 	key: K,
 ): SchemaKeyFromCollectionName<K> {

@@ -2,9 +2,11 @@
 
 import { TiptapEditor } from "@/components/TiptapEditor";
 import { useBoard, useProject } from "@/hooks/payload";
+import { responseSchema } from "@/lib/payload";
+import { postSchema } from "@payload/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import type { Editor } from "@tiptap/core";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { type FormEvent, useCallback, useRef } from "react";
 
 type Props = {
@@ -22,6 +24,7 @@ export default function NewPostPage({
 	params: { lng, group, tid },
 	searchParams,
 }: Props) {
+	const router = useRouter();
 	const editorRef = useRef<{ editor: Editor }>(null);
 
 	const queryClient = useQueryClient();
@@ -33,6 +36,8 @@ export default function NewPostPage({
 	const { data: project, isLoading: isProjectLoading } = useProject(group, tid);
 	const { data: board, isLoading: isBoardLoading } = useBoard(boardId);
 
+	const baseUrl = `/${lng}/members/${group}/projects/${tid}`;
+
 	const newPost = useCallback(
 		async (e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
@@ -42,29 +47,42 @@ export default function NewPostPage({
 			}
 
 			const editor = editorRef.current.editor;
-
-			const target = e.currentTarget;
 			const formData = new FormData(e.currentTarget);
-			await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
+			const result = await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/api/posts`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						title: formData.get("title"),
+						board: board.id,
+						content: [editor.getJSON()],
+					}),
+					credentials: "include",
 				},
-				body: JSON.stringify({
-					title: formData.get("title"),
-					board: board.id,
-					content: [editor.getJSON()],
-				}),
-				credentials: "include",
-			});
+			);
 
 			queryClient.invalidateQueries({
 				queryKey: ["board", board?.id, "posts"],
 			});
 
-			target.reset();
+			const resultText = await result.text();
+			try {
+				const json = JSON.parse(resultText);
+				const schema = responseSchema(postSchema);
+				const data = schema.parse(json);
+				if ("error" in data) {
+					console.error(data.error);
+					return;
+				}
+				router.push(`${baseUrl}/posts/${data.doc.id}`);
+			} catch (e) {
+				console.error(e);
+			}
 		},
-		[queryClient, board],
+		[queryClient, board, router, baseUrl],
 	);
 
 	if (isProjectLoading || isBoardLoading) {
@@ -74,10 +92,8 @@ export default function NewPostPage({
 	}
 
 	if (!project || !board) {
-		redirect(`/${lng}/members/${group}/projects/${tid}`);
+		redirect(`/${baseUrl}`);
 	}
-
-	const baseUrl = `/${lng}/members/${group}/projects/${tid}`;
 
 	return (
 		<div className="w-full h-full font-pretendard pb-64">
