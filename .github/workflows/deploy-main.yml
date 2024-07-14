@@ -44,4 +44,4 @@ jobs:
           corepack enable && \
           curl -fsSL https://ion.sst.dev/install | bash && \
           pnpm install && \
-          pnpm deploy:main
+          /home/runner/.sst/bin/sst deploy --stage production
