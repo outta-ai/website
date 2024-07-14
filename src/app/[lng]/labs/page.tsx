@@ -46,14 +46,14 @@ export default async function LabsPage() {
 						</div>
 						<a
 							href={data.registration.link}
-							className="px-8 py-4 rounded-xl bg-gradient-main text-white font-sbaggro"
+							className="px-8 py-4 rounded-xl bg-customgrad-main text-white font-sbaggro"
 						>
 							부트캠프 참가신청
 							<IconWrite className="inline w-6 h-6 ml-2" />
 						</a>
 					</>
 				) : (
-					<p className="px-8 py-4 rounded-xl bg-gradient-gray text-black font-sbaggro">
+					<p className="px-8 py-4 rounded-xl bg-customgrad-gray text-black font-sbaggro">
 						마감되었습니다
 					</p>
 				)}

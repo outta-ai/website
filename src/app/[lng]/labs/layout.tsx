@@ -18,7 +18,7 @@ export default function LabsLayout({ children }: PropsWithChildren) {
 
 	return (
 		<div className="w-full h-full font-pretendard">
-			<div className="w-full min-h-[512px] bg-gradient-main-0.5 overflow-auto">
+			<div className="w-full min-h-[512px] bg-customgrad-main-0.5 overflow-auto">
 				<div className="w-full max-w-[1024px] min-h-28 mt-64 mx-auto px-6 pb-12 lg:px-16">
 					<div className="flex flex-col sm:flex-row gap-[9px]">
 						<LogoLabs1 />

@@ -122,7 +122,7 @@ export function BoardBlock({ group, tid, block, baseUrl, className }: Props) {
 							))}
 						</tbody>
 					</table>
-					<div className="flex justify-end mb-12">
+					<div className="flex justify-end mb-12 mt-6">
 						<a
 							href={`/members/${group}/projects/${tid}/posts/new?board=${board?.id}`}
 							className="block font-semibold border border-gray-300 px-4 py-1"

@@ -35,7 +35,7 @@ export function RecommendSection({ recommend }: Props) {
 											height={192}
 											className="h-[192px] rounded-xl object-top object-cover"
 										/>
-										<div className="absolute top-0 left-0 w-full h-full z-5 bg-gradient-image" />
+										<div className="absolute top-0 left-0 w-full h-full z-5 bg-customgrad-image" />
 									</div>
 								)}
 								<div

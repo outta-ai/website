@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import { useMe } from "@/hooks/payload";
 import { faBars, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { QueryClient } from "@tanstack/react-query";
@@ -27,6 +28,7 @@ const HeaderLinks = [
 ];
 
 export function Header() {
+	const me = useMe();
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const router = useRouter();
@@ -76,8 +78,8 @@ export function Header() {
 			</header>
 			<ul
 				className={classNames(
-					"lg:hidden fixed top-28 left-0 w-full overflow-hidden transition-all duration-700 ease-in-out bg-gradient-to-b from-white/0 to-white/30",
-					menuOpen ? "max-h-[1024px]" : "max-h-0",
+					"lg:hidden fixed top-28 left-0 w-full overflow-hidden transition-all duration-700 ease-in-out bg-gradient-to-b from-white/100",
+					menuOpen ? "max-h-[1024px] pb-24" : "max-h-0",
 				)}
 			>
 				{HeaderLinks.map((link) => (
@@ -90,6 +92,26 @@ export function Header() {
 						</Link>
 					</li>
 				))}
+				{me ? (
+					<>
+						<li className="w-full font-hanamdaum text-center py-4">
+							<Link href="/members/mypage" onClick={() => setMenuOpen(false)}>
+								마이 페이지
+							</Link>
+						</li>
+						<li className="w-full font-hanamdaum text-center py-4">
+							<Link href="/auth/logout" onClick={() => setMenuOpen(false)}>
+								로그아웃
+							</Link>
+						</li>
+					</>
+				) : (
+					<li className="w-full font-hanamdaum text-center py-4">
+						<Link href="/auth/login" onClick={() => setMenuOpen(false)}>
+							로그인
+						</Link>
+					</li>
+				)}
 			</ul>
 		</>
 	);
