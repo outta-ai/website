@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import { useMe } from "@/hooks/payload";
+import { useLogout } from "@/hooks/useLogout";
 import { faBars, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { QueryClient } from "@tanstack/react-query";
@@ -54,6 +55,8 @@ export function Header() {
 		}
 	}, [router, queryClient, params]);
 
+	const logout = useLogout();
+
 	return (
 		<>
 			<header className="w-full max-w-[896px] lg:max-w-none h-28 pt-12 mx-auto lg:px-16 flex items-center">
@@ -100,9 +103,15 @@ export function Header() {
 							</Link>
 						</li>
 						<li className="w-full font-hanamdaum text-center py-4">
-							<Link href="/auth/logout" onClick={() => setMenuOpen(false)}>
+							<button
+								type="button"
+								onClick={async () => {
+									setMenuOpen(false);
+									await logout();
+								}}
+							>
 								로그아웃
-							</Link>
+							</button>
 						</li>
 					</>
 				) : (

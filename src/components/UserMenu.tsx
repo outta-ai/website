@@ -1,5 +1,6 @@
 "use client";
 
+import { useLogout } from "@/hooks/useLogout";
 import { getUserInfo } from "@/lib/user";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +16,8 @@ export function UserMenu({ className }: Props) {
 		queryKey: ["me"],
 		queryFn: () => getUserInfo({ refresh: true }),
 	});
+
+	const logout = useLogout();
 
 	if (isLoading) {
 		return <p className="text-gray-400">로딩 중...</p>;
@@ -38,9 +41,13 @@ export function UserMenu({ className }: Props) {
 						</Link>
 					</li>
 					<li className="w-full border border-gray-300 p-2">
-						<Link href="/auth/logout" className="block w-full">
+						<button
+							type="button"
+							className="block w-full text-left"
+							onClick={logout}
+						>
 							로그아웃
-						</Link>
+						</button>
 					</li>
 				</ul>
 			</div>
