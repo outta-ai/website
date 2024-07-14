@@ -41,7 +41,11 @@ export function UserMenu({ className }: Props) {
 						</Link>
 					</li>
 					<li className="w-full border border-gray-300 p-2">
-						<button type="button" className="block w-full" onClick={logout}>
+						<button
+							type="button"
+							className="block w-full text-left"
+							onClick={logout}
+						>
 							로그아웃
 						</button>
 					</li>
