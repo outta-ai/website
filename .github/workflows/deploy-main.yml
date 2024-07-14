@@ -10,7 +10,7 @@ permissions:
   id-token: write
 
 jobs:
-  docker-build:
+  deploy-main:
     runs-on: ubuntu-latest
     environment:
       name: production
@@ -44,4 +44,4 @@ jobs:
           corepack enable && \
           curl -fsSL https://ion.sst.dev/install | bash && \
           pnpm install && \
-          pnpm deploy
+          pnpm deploy:main
