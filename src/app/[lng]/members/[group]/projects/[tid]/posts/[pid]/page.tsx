@@ -78,8 +78,8 @@ export default function ProjectPostPage({
 					<span className="font-semibold">{project.name}</span> 프로젝트
 				</a>
 				&nbsp;&gt;&nbsp;
-				<span className="font-semibold">{board.name}</span>
-				{!board.name.endsWith("게시판") && " 게시판"}
+				<span className="font-semibold">{board.title}</span>
+				{!board.title.endsWith("게시판") && " 게시판"}
 			</p>
 			<div className="flex flex-col lg:flex-row justify-between items-end border-b border-gray-400 py-4">
 				<h2 className="text-4xl font-bold w-full">{post.title}</h2>
