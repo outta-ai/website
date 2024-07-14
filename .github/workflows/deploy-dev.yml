@@ -10,7 +10,7 @@ permissions:
   id-token: write
 
 jobs:
-  docker-build:
+  deploy-dev:
     runs-on: ubuntu-latest
     environment:
       name: development
