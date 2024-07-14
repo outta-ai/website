@@ -51,7 +51,7 @@ export function Member({ member, className }: Props) {
 						className="w-full max-w-[150px] aspect-square rounded-full mx-auto"
 					/>
 				) : (
-					<div className="w-full aspect-square max-w-[150px] bg-gray-200 rounded-full mx-auto" />
+					<div className="w-full aspect-square max-w-[150px] bg-customgrad-gray-200 rounded-full mx-auto" />
 				)}
 				<p className="my-6 text-xl font-bold text-center">
 					{member.position} | {name}

@@ -69,17 +69,17 @@ const config: Config = {
 				],
 				"ibm-plex": ["IBM Plex Sans KR", "sans-serif"],
 			},
-		},
-		backgroundImage: {
-			"gradient-main": "linear-gradient(86deg, #3345D3 0%, #888DFF 100%)",
-			"gradient-main-0.5":
-				"linear-gradient(86deg, rgba(51, 69, 211, 0.5) 0%, rgba(136, 141, 255, 0.5) 100%)",
-			"gradient-gray":
-				"linear-gradient(270deg, #EBEBEB 12.78%, #E0E0E0 96.76%)",
-			"gradient-image":
-				"linear-gradient(171deg, rgba(38, 50, 56, 0.00) 12.91%, #000 94.05%)",
+			backgroundImage: {
+				"customgrad-main": "linear-gradient(86deg, #3345D3 0%, #888DFF 100%)",
+				"customgrad-main-0.5":
+					"linear-gradient(86deg, rgba(51, 69, 211, 0.5) 0%, rgba(136, 141, 255, 0.5) 100%)",
+				"customgrad-gray":
+					"linear-gradient(270deg, #EBEBEB 12.78%, #E0E0E0 96.76%)",
+				"customgrad-image":
+					"linear-gradient(171deg, rgba(38, 50, 56, 0.00) 12.91%, #000 94.05%)",
+			},
 		},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/typography")],
 };
 export default config;
