@@ -82,8 +82,8 @@ export default function EditPostPage({
 					<span className="font-semibold">{project.name}</span> 프로젝트
 				</a>
 				&nbsp;&gt;&nbsp;
-				<span className="font-semibold">{board.name}</span>
-				{!board.name.endsWith("게시판") && " 게시판"}
+				<span className="font-semibold">{board.title}</span>
+				{!board.title.endsWith("게시판") && " 게시판"}
 			</p>
 			<form onSubmit={editPost}>
 				<input
