@@ -50,7 +50,7 @@ export function usePosts(board: Optional<string | Board>, page: number) {
 				"posts",
 				{ board: { equals: id } },
 				new URLSearchParams({
-					sort: "createdAt",
+					sort: "-createdAt",
 					limit: "10",
 					page: page.toString(),
 				}),

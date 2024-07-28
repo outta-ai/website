@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "bash `pwd`/env-setup.sh \u0026\u0026 next build",
+    "build": "bash `pwd`/env-setup.sh && next build",
     "dev": "sst dev next dev",
     "lint": "next lint",
     "start": "next start",
@@ -46,6 +46,7 @@
     "slate": "^0.103.0",
     "slate-react": "^0.106.0",
     "sst": "ion",
+    "ts-pattern": "^5.2.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
