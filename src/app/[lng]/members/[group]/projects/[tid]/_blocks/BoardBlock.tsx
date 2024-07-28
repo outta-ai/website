@@ -1,9 +1,10 @@
-import { useMemo, useState } from "react";
+import { Suspense, useMemo } from "react";
 
 import type { BoardBlock as BoardBlockType } from "@payload/types";
 
 import { generateText } from "@tiptap/core";
 
+import { Pagination } from "@/components/Pagination";
 import {
 	extensions,
 	TiptapEditor,
@@ -12,6 +13,7 @@ import { useBoard, usePosts } from "@/hooks/payload";
 import { shortDate } from "@/lib/date";
 import { mergeQuery } from "@/lib/payload";
 import classNames from "classnames";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
 	group: string;
@@ -21,8 +23,22 @@ type Props = {
 	className?: string;
 };
 
-export function BoardBlock({ group, tid, block, baseUrl, className }: Props) {
-	const [page, setPage] = useState(1);
+function BoardBlockContent({ group, tid, block, baseUrl, className }: Props) {
+	const searchParams = useSearchParams();
+
+	const page = useMemo(() => {
+		const param = searchParams.get("page");
+		if (!param) {
+			return 1;
+		}
+
+		const parsed = Number.parseInt(param);
+		if (Number.isNaN(parsed)) {
+			return 1;
+		}
+
+		return parsed;
+	}, [searchParams]);
 
 	const { data: boardResponse, isLoading: isBoardLoading } = useBoard(
 		block.board,
@@ -122,7 +138,9 @@ export function BoardBlock({ group, tid, block, baseUrl, className }: Props) {
 							))}
 						</tbody>
 					</table>
-					<div className="flex justify-end mb-12 mt-6">
+					<div className="flex justify-between mb-12 mt-6">
+						<div />
+						<Pagination totalPages={posts.totalPages} count={10} />
 						<a
 							href={`/members/${group}/projects/${tid}/posts/new?board=${board?.id}`}
 							className="block font-semibold border border-gray-300 px-4 py-1"
@@ -133,5 +151,13 @@ export function BoardBlock({ group, tid, block, baseUrl, className }: Props) {
 				</>
 			)}
 		</div>
+	);
+}
+
+export function BoardBlock(props: Props) {
+	return (
+		<Suspense>
+			<BoardBlockContent {...props} />
+		</Suspense>
 	);
 }
