@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Fallback, Header } from "@/components/Header";
 
 import "@/app/global.css";
+import { ChannelIO } from "@/components/ChannelIO";
 import { Langauges } from "@/lib/i18n";
 import { GoogleTagManager } from "@next/third-parties/google";
 import RootProviders from "./providers";
@@ -63,7 +64,7 @@ export default function RootLayout({
 						{children}
 					</main>
 					<Footer />
-					{/* <ChannelIO /> */}
+					<ChannelIO />
 				</RootProviders>
 			</body>
 		</html>

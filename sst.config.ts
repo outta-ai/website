@@ -19,9 +19,7 @@ export default $config({
 			domain: {
 				name: new URL(process.env.NEXT_PUBLIC_BASE_URL || "").hostname,
 				cert: "arn:aws:acm:us-east-1:531324016833:certificate/9b495b2a-ff45-491c-9800-fb3f97908435",
-				dns: sst.cloudflare.dns({
-					zone: process.env.CLOUDFLARE_ZONE_ID,
-				}),
+				dns: sst.cloudflare.dns(),
 			},
 		});
 	},
