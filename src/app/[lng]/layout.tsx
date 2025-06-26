@@ -64,7 +64,7 @@ export default function RootLayout({
 						{children}
 					</main>
 					<Footer />
-					<ChannelIO />
+					{/* <ChannelIO /> */}
 				</RootProviders>
 			</body>
 		</html>
