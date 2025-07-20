@@ -49,6 +49,8 @@ jobs:
           NEXT_PUBLIC_IMAGE_S3_URL: ${{ vars.NEXT_PUBLIC_IMAGE_S3_URL }}
           NEXT_PUBLIC_CHANNEL_KEY: ${{ vars.NEXT_PUBLIC_CHANNEL_KEY }}
           NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID: ${{ vars.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID }}
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+          REFRESH_KEY: ${{ secrets.REFRESH_KEY }}
         run: |
           corepack enable && \
           curl -fsSL https://ion.sst.dev/install | bash && \
