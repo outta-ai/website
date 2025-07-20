@@ -48,7 +48,7 @@ export function usePosts(board: Optional<string | Board>, page: number) {
 		queryFn: () =>
 			getPayloadAll(
 				"posts",
-				{ board: { equals: id } },
+				{ "board.id": { equals: id } },
 				new URLSearchParams({
 					sort: "-createdAt",
 					limit: "10",
@@ -77,7 +77,7 @@ export function useComments(post: Optional<string | Post>) {
 		queryFn: () =>
 			getPayloadAll(
 				"comments",
-				{ post: { equals: id } },
+				{ "post.id": { equals: id } },
 				new URLSearchParams({ depth: "0", sort: "createdAt" }),
 			),
 		enabled: !!post,
