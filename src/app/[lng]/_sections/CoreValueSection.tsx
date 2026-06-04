@@ -20,9 +20,9 @@ export function CoreValueSeciton({ values }: Props) {
 						gridTemplateColumns: `repeat(${values.length}, minmax(0, 1fr))`,
 					}}
 				>
-					{values.map((value, index) => (
+					{values.map((value) => (
 						<div
-							key={`keyword-${value.keyword}-${index}`}
+							key={`keyword-${value.id ?? value.keyword}`}
 							className="w-full aspect-square max-w-40 rounded-full bg-white flex justify-center items-center p-3"
 						>
 							<p className="font-sbaggro text-[1.5cqw] uppercase">
@@ -30,9 +30,9 @@ export function CoreValueSeciton({ values }: Props) {
 							</p>
 						</div>
 					))}
-					{values.map((value, index) => (
+					{values.map((value) => (
 						<p
-							key={`description-${value.keyword}-${index}`}
+							key={`description-${value.id ?? value.keyword}`}
 							className="w-full h-full text-white text-base lg:text-lg break-keep text-center"
 						>
 							{value.description}
@@ -40,8 +40,8 @@ export function CoreValueSeciton({ values }: Props) {
 					))}
 				</div>
 				<div className="w-full h-full 2xl:grid grid-cols-[minmax(max-content,128px)_1fr] hidden gap-6 items-center content-center justify-items-center">
-					{values.map((value, index) => (
-						<Fragment key={`value-${value.keyword}-${index}`}>
+					{values.map((value) => (
+						<Fragment key={`value-${value.id ?? value.keyword}`}>
 							<div className="w-full aspect-square max-w-48 rounded-full bg-white flex justify-center items-center shrink-0 p-3">
 								<p className="font-sbaggro text-[0.75cqw] uppercase">
 									{value.keyword || " "}
