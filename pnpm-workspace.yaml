@@ -1,3 +1,10 @@
+allowBuilds:
+  '@biomejs/biome': true
+  '@swc/core': true
+  aws-sdk: true
+  es5-ext: true
+  protobufjs: true
+  sharp: true
 onlyBuiltDependencies:
   - '@biomejs/biome'
   - '@swc/core'
@@ -5,3 +12,13 @@ onlyBuiltDependencies:
   - es5-ext
   - protobufjs
   - sharp
+
+# Supply-chain hardening (mitigates compromised-release / release-channel attacks).
+# Refuse any version published less than 7 days ago (value in minutes).
+minimumReleaseAge: 10080
+
+# Reject registry downgrades (a published version lower than one already trusted).
+trustPolicy: no-downgrade
+
+# Stop enforcing the trust policy for versions older than 14 days (value in minutes).
+trustPolicyIgnoreAfter: 20160

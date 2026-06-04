@@ -1,7 +1,9 @@
 import ExtensionImage from "@tiptap/extension-image";
-import type { Node } from "prosemirror-model";
-import { Plugin, type Transaction } from "prosemirror-state";
-import type { EditorView } from "prosemirror-view";
+// Import ProseMirror via @tiptap/pm so we share Tiptap v3's single bundled
+// instance of each package (mixing standalone prosemirror-* copies breaks types).
+import type { Node } from "@tiptap/pm/model";
+import { Plugin, type Transaction } from "@tiptap/pm/state";
+import type { EditorView } from "@tiptap/pm/view";
 import { z } from "zod";
 
 export const AttachmentUploadResult = z.object({

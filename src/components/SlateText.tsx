@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Descendant, createEditor } from "slate";
+import { type Descendant, createEditor } from "slate";
 import { Editable, Slate, withReact } from "slate-react";
 
 type Props = {
