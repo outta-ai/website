@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "ES2017",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
@@ -23,8 +23,7 @@
 			"@payload/types": ["./payload-types.d.ts"],
 			"@payload/zod": ["./payload-zod.ts"]
 		},
-		"forceConsistentCasingInFileNames": true,
-		"downlevelIteration": true
+		"forceConsistentCasingInFileNames": true
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
 	"exclude": ["node_modules","sst.config.ts","sst.config.ts"]

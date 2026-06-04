@@ -52,7 +52,7 @@ export const labPostSchema = z.object({
 	id: z.string(),
 	title: z.string(),
 	category: z.string(),
-	content: z.array(z.record(z.unknown())),
+	content: z.array(z.record(z.string(), z.unknown())),
 	attachments: z
 		.array(
 			z.object({
@@ -70,7 +70,7 @@ export const boardSchema = z.object({
 	id: z.string(),
 	title: z.string(),
 	name: z.string(),
-	description: z.array(z.record(z.unknown())).optional().nullable(),
+	description: z.array(z.record(z.string(), z.unknown())).optional().nullable(),
 	updatedAt: z.string(),
 	createdAt: z.string(),
 });
@@ -84,7 +84,7 @@ export const payloadPreferenceSchema = z.object({
 	key: z.string().optional().nullable(),
 	value: z
 		.union([
-			z.record(z.unknown()),
+			z.record(z.string(), z.unknown()),
 			z.array(z.unknown()),
 			z.string(),
 			z.number(),
@@ -166,7 +166,7 @@ export const boardBlockSchema = z.object({
 export const postSchema = z.object({
 	id: z.string(),
 	title: z.string(),
-	content: z.array(z.record(z.unknown())).optional().nullable(),
+	content: z.array(z.record(z.string(), z.unknown())).optional().nullable(),
 	author: z.union([z.string(), memberSchema]),
 	board: z.union([z.string(), boardSchema]),
 	updatedAt: z.string(),
@@ -185,8 +185,8 @@ export const commentSchema = z.object({
 export const websiteMainSchema = z.object({
 	id: z.string(),
 	about: z.object({
-		summary: z.array(z.record(z.unknown())),
-		description: z.array(z.record(z.unknown())),
+		summary: z.array(z.record(z.string(), z.unknown())),
+		description: z.array(z.record(z.string(), z.unknown())),
 	}),
 	values: z
 		.array(
@@ -200,10 +200,10 @@ export const websiteMainSchema = z.object({
 		.nullable(),
 	methods: z.object({
 		summary: z.string(),
-		description: z.array(z.record(z.unknown())),
+		description: z.array(z.record(z.string(), z.unknown())),
 	}),
 	sumamry: z.object({
-		contents: z.array(z.record(z.unknown())),
+		contents: z.array(z.record(z.string(), z.unknown())),
 	}),
 	history: z
 		.array(
@@ -265,7 +265,7 @@ export const websiteLabSchema = z.object({
 			.array(
 				z.object({
 					title: z.string(),
-					description: z.array(z.record(z.unknown())),
+					description: z.array(z.record(z.string(), z.unknown())),
 					id: z.string().optional().nullable(),
 				}),
 			)
@@ -296,7 +296,7 @@ export const websiteLabSchema = z.object({
 			.array(
 				z.object({
 					name: z.string(),
-					description: z.array(z.record(z.unknown())),
+					description: z.array(z.record(z.string(), z.unknown())),
 					id: z.string().optional().nullable(),
 				}),
 			)
@@ -306,7 +306,7 @@ export const websiteLabSchema = z.object({
 			.array(
 				z.object({
 					image: z.union([z.string(), mediaSchema]).optional().nullable(),
-					description: z.array(z.record(z.unknown())),
+					description: z.array(z.record(z.string(), z.unknown())),
 					id: z.string().optional().nullable(),
 				}),
 			)
@@ -321,7 +321,7 @@ export const websiteLabSchema = z.object({
 		.array(
 			z.object({
 				title: z.string(),
-				description: z.array(z.record(z.unknown())),
+				description: z.array(z.record(z.string(), z.unknown())),
 				year: z.number(),
 				publisher: z.string(),
 				price: z.number(),

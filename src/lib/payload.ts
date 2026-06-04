@@ -94,6 +94,7 @@ export async function getPayloadOne<K extends keyof Config["collections"]>(
 	const data = JSON.parse(text);
 
 	const schemaKey = collectionNameToSchemaKey(key);
+	// biome-ignore lint/performance/noDynamicNamespaceImportAccess: schema must be resolved dynamically by collection name; a static import isn't possible here.
 	const schema = payloadZod[schemaKey];
 
 	const result = z.union([schema, errorSchema]).parse(data);
@@ -133,6 +134,7 @@ export async function getPayloadAll<K extends keyof Config["collections"]>(
 	const data = JSON.parse(text);
 
 	const schemaKey = collectionNameToSchemaKey(key);
+	// biome-ignore lint/performance/noDynamicNamespaceImportAccess: schema must be resolved dynamically by collection name; a static import isn't possible here.
 	const schema = payloadZod[schemaKey];
 	const result = z.union([paginatedSchema(schema), errorSchema]).parse(data);
 	if ("error" in result) {

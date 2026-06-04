@@ -38,7 +38,7 @@ export const extensions = (readOnly?: boolean) => {
 
 	return [
 		StarterKit.configure({
-			history: false,
+			undoRedo: false,
 			dropcursor: false,
 			gapcursor: false,
 		}),
@@ -192,6 +192,8 @@ type Props = {
 export const TiptapEditor = forwardRef(
 	({ content, readOnly, className, editorClass }: Props, ref) => {
 		const editor = useEditor({
+			// Required by Tiptap v3 to avoid SSR hydration mismatches in Next.js.
+			immediatelyRender: false,
 			extensions: extensions(readOnly),
 			content,
 			editorProps: {
@@ -211,7 +213,7 @@ export const TiptapEditor = forwardRef(
 		return (
 			<div className={className}>
 				{!readOnly && <TiptapToolbar editor={editor} />}
-				<EditorContent editor={editor} readOnly={readOnly} />
+				<EditorContent editor={editor} />
 			</div>
 		);
 	},
