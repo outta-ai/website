@@ -1,5 +1,5 @@
 "use client";
-import { MouseEvent } from "react";
+import type { MouseEvent } from "react";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";

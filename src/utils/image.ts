@@ -1,4 +1,4 @@
-import { Media } from "@payload/types";
+import type { Media } from "@payload/types";
 
 export function getImage(image: string | Media) {
 	if (typeof image === "string") {
