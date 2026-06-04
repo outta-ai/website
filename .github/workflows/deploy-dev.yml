@@ -27,7 +27,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Setup Cache
         uses: actions/cache@v4
@@ -53,6 +53,7 @@ jobs:
           REFRESH_KEY: ${{ secrets.REFRESH_KEY }}
         run: |
           corepack enable
-          curl -fsSL https://ion.sst.dev/install | bash
+          curl -fsSL https://ion.sst.dev/install | VERSION=4.14.3 bash
+          /home/runner/.sst/bin/sst version | grep -qF "4.14.3" || { echo "::error::SST CLI is not 4.14.3"; exit 1; }
           pnpm install
           /home/runner/.sst/bin/sst deploy --stage develop
