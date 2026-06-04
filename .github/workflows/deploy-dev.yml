@@ -24,19 +24,14 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_NAME }}
           aws-region: us-east-1
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-
-      - name: Setup Cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+          cache: "pnpm"
 
       - name: Deploy to AWS
         env:
@@ -52,6 +47,5 @@ jobs:
           TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
           REFRESH_KEY: ${{ secrets.REFRESH_KEY }}
         run: |
-          corepack enable
-          pnpm install
+          pnpm install --frozen-lockfile
           pnpm sst deploy --stage develop
